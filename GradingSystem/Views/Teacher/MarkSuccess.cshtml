@@ -1,0 +1,25 @@
+﻿@model GradingSystem.Models.Homework
+@{
+    ViewBag.Title = "MarkSuccess";
+}
+<html>
+<head>
+    <title>View your homework here!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        h2,h3 {
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h2>Mark Successful!</h2>
+    <h3>Feedback</h3><div class="well well-sm">@Html.DisplayFor(Model => Model.Feedback)</div>
+    <h3>Grade</h3><div class="well well-sm">@Html.DisplayFor(Model => Model.Grade)</div>
+</body>
+</html>

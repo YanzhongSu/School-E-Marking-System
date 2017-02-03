@@ -1,0 +1,61 @@
+﻿@model GradingSystem.Models.Homework
+@*@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}*@
+@{
+    ViewBag.Title = "Mark";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>You are marking homework</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        h2{
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    @if(Model == null)
+    {
+        <h1>No Homework Submited!</h1>
+    }
+    else
+    {
+        if(Model.Feedback != null && Model.Grade != null)
+        {
+            <h2>The homework was marked, you can change the feedback and grade</h2>
+        }
+        using (@Html.BeginForm("Mark", "Teacher"))
+        {
+            <input type="hidden" name="hmid" value="@ViewBag.HomeworkId" />
+            <div class="form-group">
+            <label for="Feedback">Feedback:</label>
+            @Html.EditorFor(Model => Model.Feedback, new { htmlAttributes = new { @class = "form-control" }, })
+
+            <label for="Grade">Grade:(A,B,C,D,F)</label>
+            @Html.EnumDropDownListFor(Model => Model.Grade,"Select a grade",new { @class = "form-control" })
+            </div>
+
+            <h2>Here are student's html file</h2>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" srcdoc="@System.Text.Encoding.Default.GetString(Model.HomeworkData)"></iframe>
+            </div>
+            <br />
+            <div class="container">
+                <input type="submit" class="btn btn-primary" value="Mark" />
+            </div>
+            //string str = "file:///" + @Model.HomeworkUrl;
+            
+        }
+    }
+    
+</body>
+</html>
+

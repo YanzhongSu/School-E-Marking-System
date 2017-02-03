@@ -1,0 +1,66 @@
+﻿@model GradingSystem.Models.Homework
+
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <html>
+    <head>
+        <title>View your homework here!</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+            h3{
+                font-weight: bold;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container"></div>
+        <h1>Hi, upload homework or view results here</h1>
+        <h3>User</h3><div class="well well-sm">@ViewBag.UserName</div>
+        @*<th>Homework</th>
+        <th>Grade</th>
+        <th>Upload Date</th>*@
+         @if (ViewBag.flag == null)
+         {
+            <h3>Homework</h3><div class="well well-sm">Homework not submitted</div>
+            <h3>Grade</h3><div class="well well-sm">No Grade</div>
+            <h3>Feedback</h3><div class="well well-sm">No Feedback</div>
+             //not show date
+            <div class="container">
+              <form enctype="multipart/form-data" method="post" action="Index">
+                 <input type="file" class="btn btn-primary" name="SelectedHomework" />
+                  <br />
+                 <input type="submit" class="btn btn-primary" value="submit" />
+              </form>
+                
+            </div>
+         }
+         else
+         {
+             if (Model.Feedback != null)
+             {
+              <h3>Feedback</h3><div class="well well-sm">@Html.DisplayFor(Model => Model.Feedback)</div>
+             }
+             else
+             {
+              <h3>Feedback</h3><div class="well well-sm">No Feedback</div>
+             }
+             if (Model.Grade != null)
+             {
+                <h3>Grade</h3><div class="well well-sm">@Html.DisplayFor(Model => Model.Grade)</div>
+             }
+             else
+             {
+                <h3>Grade</h3><div class="well well-sm">No Grade</div>
+             }
+                    <h3>Upload Date</h3><div class="well well-sm">@Model.UploadDate</div>
+                    
+         }
+    </body>
+</html>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<GradingSystem.Models.ApplicationUser>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<html >
+<head>
+    <title>Hi, you are a teacher!</title>
+    @*<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
+    <style>
+        table{
+            border-collapse:collapse;
+            width:75%
+        }
+        td{
+            text-align:center;
+            padding:8px;
+        }
+        th{
+            text-align:center;
+            padding:8px;
+            font-weight:bold;
+        }
+        tr:nth-child(even){background-color:#f2f2f2}
+    </style> 
+</head>
+
+<body>
+    @*<div class="container">*@
+    <div>
+
+        <h2>Welcome @ViewBag.TeacherName</h2>
+        <table class="table table-hover">
+            <tr>
+                <th>StudentName</th>
+                <th>Homework Status</th>
+                <th>Feedback</th>
+                <th>Grade</th>
+                <th>Upload Date</th>
+                <th></th>
+            </tr>
+            @{var students = ViewData["passedArray"] as string[]; }
+            @foreach (string sName in students)
+            {
+                <tr>
+                    <td>@sName</td>
+                    <td class="text-center">N/A</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>@Html.ActionLink("Mark", "Mark", new { name = sName })</td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
